@@ -1,3 +1,6 @@
+mujoco-py windows support
+(includes minor changes from the original repo)
+
 **Status:** Maintenance (expect bug fixes and minor updates)
 
 # mujoco-py [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://openai.github.io/mujoco-py/build/html/index.html) [![Build Status](https://travis-ci.org/openai/mujoco-py.svg?branch=master)](https://travis-ci.org/openai/mujoco-py)
