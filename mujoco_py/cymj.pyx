@@ -183,10 +183,17 @@ def load_model_from_xml(str xml_str):
     cdef char errstr[300]
     cdef mjModel *model
     with wrap_mujoco_warning():
-        with tempfile.NamedTemporaryFile(suffix=".xml", delete=True) as fp:
+        print("trying to create a temp file")
+        with tempfile.NamedTemporaryFile(suffix=".xml", delete=False) as fp:
+            print("obtained a file handle")
             fp.write(xml_str.encode())
             fp.flush()
             model = mj_loadXML(fp.name.encode(), NULL, errstr, 300)
+            try:
+                fp.close()
+                os.unlink(fp.name)
+            except:
+                pass
     if model == NULL:
         raise Exception('%s\nFailed to load XML from string. mj_loadXML error: %s' % (xml_str, errstr,))
     return WrapMjModel(model)
